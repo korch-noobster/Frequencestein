@@ -1,5 +1,8 @@
-# Equalizer
-The project on the TRTPO of the team "Navi" of the group 550503. The project is a computer application for monitoring the frequency response of audio recordings.
+# Frequencestein
+The project on the TRTPO of the team "Navi" of the group 550503. 
+Итак, сейчас речь идет о мобильном приложении для анализа частотной характеристики звука в режиме реального времени. Среди дополнительных опций можно также отслеживать параметры освещения и вибраций. 
+
+Технология - Qt.
 
 ## Team description
 Project owner - Макарович Евгений
