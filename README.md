@@ -5,9 +5,9 @@ The project on the TRTPO of the team "Navi" of the group 550503.
 Технология - Qt.
 
 ## Team description
-Project owner - Макарович Евгений
+Product owner - Макарович Евгений
 
-Scram master  - Кожемяко Никита
+Scrum master  - Кожемяко Никита
 
 Developer     - Холодцов Сергей
 
