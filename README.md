@@ -14,3 +14,8 @@ Developer     - Холодцов Сергей
 Developer     - Дронов Дмитрий
 
 Developer     - Щепило Владислав
+
+
+## <a href="https://trello.com/b/IqbGs5YM/проект"> Доска в Trello </a>
+
+## <a href="https://docs.google.com/spreadsheets/d/1Ivj318Qq7cRbGXWlihbyAkCQCABN2HIOtvI_L0gWw44/edit#gid=0"> Product backlog </a>
