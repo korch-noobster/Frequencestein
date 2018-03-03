@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QAudioRecorder>
 
 namespace Ui {
 class MainWindow;
