@@ -6,21 +6,30 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>379</width>
-    <height>448</height>
+    <width>720</width>
+    <height>1280</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(0, 0, 0);</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>-4</x>
-      <y>-1</y>
-      <width>391</width>
-      <height>451</height>
+      <x>0</x>
+      <y>0</y>
+      <width>720</width>
+      <height>1191</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -52,71 +61,23 @@
      <widget class="QWidget" name="graphic" native="true">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>361</width>
-        <height>291</height>
+        <x>20</x>
+        <y>20</y>
+        <width>680</width>
+        <height>800</height>
        </rect>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 191);</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>400</y>
-        <width>251</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>service info</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>370</y>
-        <width>251</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>service info</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>340</y>
-        <width>251</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>service info</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label1">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>310</y>
-        <width>251</width>
-        <height>20</height>
+        <x>20</x>
+        <y>830</y>
+        <width>681</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -132,10 +93,10 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>310</y>
-        <width>101</width>
-        <height>111</height>
+        <x>490</x>
+        <y>990</y>
+        <width>211</width>
+        <height>151</height>
        </rect>
       </property>
       <property name="palette">
@@ -145,7 +106,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -154,7 +115,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -163,7 +124,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -174,7 +135,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -183,7 +144,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -192,7 +153,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -203,7 +164,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -212,7 +173,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -221,7 +182,7 @@
           <brush brushstyle="SolidPattern">
            <color alpha="255">
             <red>85</red>
-            <green>255</green>
+            <green>0</green>
             <blue>127</blue>
            </color>
           </brush>
@@ -238,10 +199,58 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(85, 255, 127);</string>
+       <string notr="true">background-color: rgb(85, 0, 127);</string>
       </property>
       <property name="text">
        <string>ON/OFF</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label1_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>910</y>
+        <width>681</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>service info</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label1_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>990</y>
+        <width>461</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>service info</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label1_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>1070</y>
+        <width>461</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>service info</string>
       </property>
      </widget>
     </widget>
