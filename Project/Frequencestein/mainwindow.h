@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
 #include <QTime>
+#include <QAudioRecorder>
+#include <QTimer>
+#include "audiointerface.h"
 
 
 namespace Ui {
@@ -23,8 +25,11 @@ private:
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
+    AudioInterface audioInterface;
 public slots:
     void realtimeDataSlot();
+private slots:
+    void on_startButton_released();
 };
 
 #endif // MAINWINDOW_H
