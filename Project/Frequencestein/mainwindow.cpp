@@ -51,7 +51,7 @@ void MainWindow::setupGraph()
 
     ui->graphic2->axisRect()->setupFullAxesBox();
     ui->graphic2->xAxis->setRange(0, 16);
-    ui->graphic2->yAxis->setRange(0, 1);
+    ui->graphic2->yAxis->setRange(0, 20);
 }
 
 void MainWindow::setupTimer()
@@ -138,15 +138,14 @@ void MainWindow::realtimeDataSlot()
 {
     double key = timeForPlot.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
-    static double lastData = 0;
+    int N = 16;
+    static int elementCount = 0;
+
     //data that will be ploted
     if (key - lastPointKey <= 0.001) // at most add point every 2 ms
         return;
     double data = 500*log(audioInterface.getValue()+1);
-    //data = (data*0.8) + (lastData*0.2);
-    //lastData = data;
 
-    ui->label1->setText(QString::number(data));
     if(isSoundActive)
         releaseSoundDiagram(key, data);
 
@@ -167,7 +166,6 @@ void MainWindow::realtimeDataSlot()
 
     ui->soundInfoLabel->setText(QString::number(data)+"dB");
     lastPointKey = key;
-
 }
 
 void MainWindow::on_startButton1_clicked()
@@ -178,8 +176,7 @@ void MainWindow::on_startButton1_clicked()
         timeForPlot.restart();
         timer->start(0); // Interval 0 means to refresh as fast as possible
         audioInterface.start();
-        ui->startButton->setText("STOP");
-        ui->label1->setText("Input on");
+        ui->startButton1->setText("STOP");
         isSoundActive = true;
     }
     else
@@ -187,7 +184,7 @@ void MainWindow::on_startButton1_clicked()
         //timer->stop();
         audioInterface.stop();
         ui->soundInfoLabel->setText("Press START button");
-        ui->startButton->setText("START");
+        ui->startButton1->setText("START");
         isSoundActive = false;
     }
 }
