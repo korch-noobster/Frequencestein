@@ -2,6 +2,9 @@
 #include "ui_mainwindow.h"
 #include <math.h>
 
+#include <iostream>
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setupGraph();
     setupTimer();
+
+    QTime currentTime(QTime::currentTime());
+    timeForPlot = currentTime;
 
     this->move(0,0);
     this->resize(QApplication::desktop()->availableGeometry().width(), QApplication::desktop()->availableGeometry().height());
@@ -36,8 +42,7 @@ void MainWindow::setupTimer()
 
 void MainWindow::realtimeDataSlot()
 {
-    static QTime time(QTime::currentTime());
-    double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
+    double key = timeForPlot.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
     static double lastData = 0;
     ///data that will be ploted
@@ -64,6 +69,7 @@ void MainWindow::on_startButton_released()
     static bool isActive = false;
     if(!isActive)
     {
+        timeForPlot.restart();
         timer->start(0); // Interval 0 means to refresh as fast as possible
         audioInterface.start();
         isActive = true;
