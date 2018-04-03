@@ -5,9 +5,9 @@
 #include <QTime>
 #include <QAudioRecorder>
 #include <QTimer>
+#include <complex>
 #include "qcustomplot.h"
 #include "audiointerface.h"
-
 
 namespace Ui {
 class MainWindow;
@@ -29,7 +29,6 @@ private:
 
     bool isSoundActive;
     bool isFrequencyActive;
-    QTime pause;
 private:
     Ui::MainWindow *ui;
     QTimer *timer;

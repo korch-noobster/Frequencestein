@@ -23,7 +23,7 @@ void MainWindow::setupGraph()
     ui->graphic1->addGraph(); // blue line
     ui->graphic1->graph(0)->setPen(QPen(QColor(40, 110, 255)));
     ui->graphic1->axisRect()->setupFullAxesBox();
-    ui->graphic1->yAxis->setRange(-1.2, 1.2);
+    ui->graphic1->yAxis->setRange(-100, 100);
 
     //sound frequency bars
     ui->graphic2->removePlottable(0);
@@ -39,9 +39,8 @@ void MainWindow::setupGraph()
     frequencyBars->setPen(pen);
 
     ui->graphic2->axisRect()->setupFullAxesBox();
-    ui->graphic2->xAxis->setRange(0, 20);
-    ui->graphic2->yAxis->setRange(0, 30);
-//    ui->graphic2->replot();
+    ui->graphic2->xAxis->setRange(0, 16);
+    ui->graphic2->yAxis->setRange(0, 1);
 }
 
 void MainWindow::setupTimer()
@@ -54,9 +53,9 @@ void MainWindow::releaseSoundDiagram(double x, double y)
 {
     ui->graphic1->graph(0)->addData(x, y);
     // rescale value (vertical) axis to fit the current data:
-    ui->graphic1->graph(0)->rescaleValueAxis();
     // make key axis range scroll with the data (at a constant range size of 8):
     ui->graphic1->xAxis->setRange(x, 8, Qt::AlignRight);
+    ui->graphic1->graph(0)->rescaleValueAxis();
     ui->graphic1->replot();
 }
 
@@ -80,32 +79,83 @@ void MainWindow::releaseFrequencyBars(QVector<double> x, QVector<double> y)
     ui->graphic2->replot();
 }
 
+QVector <std::complex<double>> CombineResults(int n, QVector <std::complex<double>> b, QVector <std::complex<double>> c)
+{
+    QVector <std::complex<double>> image(n);
+    for (int  i = 0; i < n / 2; i++)
+    {
+        image[2 * i] = b[i];
+        image[2 * i + 1] = c[i];
+    }
+    return image;
+}
+
+QVector <std::complex<double>> BPF(QVector <std::complex<double>> a, bool minus = false){
+    int n = a.size();
+    if (n == 1) return a;
+
+    QVector <std::complex<double>> c(n/2), b(n/2);
+    std::complex<double> w = {1, 0};
+    for(int j = 0; j < n/2; j++){
+        b[j] = a[j] + a[j + n / 2];
+        c[j] = (a[j] - a[j + n / 2]) * w;
+        w *= std::complex<double> {cos(minus?2*M_PI/n:-2*M_PI/n), sin(minus?2*M_PI/n:-2*M_PI/n)};
+    }
+    return CombineResults(n, BPF(b, minus), BPF(c, minus));
+}
+
+void BPFdrow(QVector<double> &y, int N)
+{
+    QVector <double> X_f(N);
+    QVector <double> Y_f(N);
+    QVector <std::complex<double>> F(N);
+
+    for(int i = 0; i < N; i++)
+    {
+        F[i] = std::complex<double>{y[i], 0};//myEquationComplex(i*2*M_PI/(N-1));
+    }
+    F = BPF(F);
+    for(int i = 0; i < N; i++){
+        X_f[i] = i;
+        F[i] = std::complex<double> {F[i].real()/N, F[i].imag()/N};
+        Y_f[i] = sqrt(pow(F[i].real(), 2) + pow(F[i].imag(), 2));
+    }
+}
+
+
 void MainWindow::realtimeDataSlot()
 {
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
+    int N = 16;
+    static int elementCount = 0;
 
     //data that will be ploted
+    if (key - lastPointKey <= 0.001) // at most add point every 2 ms
+        return;
     double data = audioInterface.getValue();
 
-    if (key - lastPointKey <= 0.002) // at most add point every 2 ms
-        return;
+    ui->label1->setText(QString::number(data));
     if(isSoundActive)
         releaseSoundDiagram(key, data);
 
-    QVector<double> X(20), Y(20);
-    for (int i = 0; i < 20; ++i)
+    static QVector<double> X(N), Y(N);
+    if(elementCount < N)
     {
-        X[i] = i;
-        Y[i] = rand()%20;
+        X[elementCount] = elementCount + 1;
+        Y[elementCount] = data;
+        elementCount++;
     }
-
-    if (key - lastPointKey <= 0.01) // at most add point every 2 ms
-        return;
-    if(isFrequencyActive)
-        releaseFrequencyBars(X, Y);
+    if(elementCount == N-1)
+    {
+        BPFdrow(Y, N);
+        if(isFrequencyActive)
+            releaseFrequencyBars(X, Y);
+        elementCount = 0;
+    }
     lastPointKey = key;
+
 }
 
 void MainWindow::on_startButton1_clicked()
