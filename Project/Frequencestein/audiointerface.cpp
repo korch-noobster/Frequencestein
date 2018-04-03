@@ -7,8 +7,10 @@
 #include <QIODevice>
 #include <qendian.h>
 
-AudioInfo::AudioInfo(const QAudioFormat &format)
-    : m_format(format)
+#include <iostream>
+using namespace std;
+
+AudioInfo::AudioInfo(const QAudioFormat &format) : m_format(format)
 {
     switch (m_format.sampleSize()) {
     case 8:
@@ -135,8 +137,8 @@ AudioInterface::AudioInterface()
 {
     QAudioFormat format;
     format.setSampleRate(8000);
-    format.setChannelCount(1);
-    format.setSampleSize(16);
+    format.setChannelCount(2);
+    format.setSampleSize(32);
     format.setSampleType(QAudioFormat::SignedInt);
     format.setByteOrder(QAudioFormat::LittleEndian);
     format.setCodec("audio/pcm");

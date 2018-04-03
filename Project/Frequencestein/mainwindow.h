@@ -26,6 +26,7 @@ private:
     Ui::MainWindow *ui;
     QTimer *timer;
     AudioInterface audioInterface;
+    QTime timeForPlot;
 public slots:
     void realtimeDataSlot();
 private slots:
