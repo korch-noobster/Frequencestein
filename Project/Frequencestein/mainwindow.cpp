@@ -181,7 +181,7 @@ void MainWindow::on_startButton1_clicked()
     }
     else
     {
-        //timer->stop();
+        timer->stop();
         audioInterface.stop();
         ui->soundInfoLabel->setText("Press START button");
         ui->startButton1->setText("START");
