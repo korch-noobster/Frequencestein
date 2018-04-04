@@ -49,8 +49,8 @@ void MainWindow::setupGraph()
     frequencyBars->setPen(pen);
 
     ui->graphic2->axisRect()->setupFullAxesBox();
-    ui->graphic2->xAxis->setRange(0, 16);
-    ui->graphic2->yAxis->setRange(0, 20);
+    ui->graphic2->xAxis->setRange(0, 31);
+    ui->graphic2->yAxis->setRange(0, 70);
 }
 
 
@@ -93,7 +93,7 @@ static double lastPointKey = 0;
 void MainWindow::realtimeDataSlot()
 {
     double key = timeForPlot.elapsed()/1000.0; // time elapsed since start of demo, in seconds
-    int N = 16;
+    int N = 32;
     static int elementCount = 0;
 
     //data that will be ploted
@@ -114,11 +114,11 @@ void MainWindow::realtimeDataSlot()
     static QVector<double> X(N), Y(N);
     if(elementCount < N)
     {
-        X[elementCount] = elementCount;
+        X[elementCount] = elementCount - 0.5;
         Y[elementCount] = data;
         elementCount++;
     }
-    if(elementCount == N-1)
+    if(elementCount == N)
     {
         //FastFourierTransform FFT;
         //FFT.Draw(&Y, N);
