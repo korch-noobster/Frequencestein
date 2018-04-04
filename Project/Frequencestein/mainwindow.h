@@ -8,6 +8,7 @@
 #include <complex>
 #include "qcustomplot.h"
 #include "audiointerface.h"
+#include "fastfouriertransform.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,10 +36,10 @@ private:
     AudioInterface audioInterface;
     QTime timeForPlot;
     QCPBars* frequencyBars;
+
 public slots:
     void realtimeDataSlot();
 private slots:
-    void on_startButton_released();
     void on_startButton1_clicked();
     void on_startButton2_clicked();
 };
